@@ -12,6 +12,7 @@ import org.thymeleaf.web.servlet.JavaxServletWebApplication;
 
 
 public class Template {
+	
 	private Template() { }
 
 	public static void render(
