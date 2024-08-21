@@ -5,7 +5,7 @@ public class Prato {
 	private int id;	
 	private String nome;
 	private String descricao;
-	private double valor;
+	private double preco;
 
 	public int getId() {
 		return id;
@@ -19,8 +19,8 @@ public class Prato {
 		return descricao;
 	}
 	
-	public double getValor() {
-		return valor;
+	public double getPreco() {
+		return preco;
 	}
 	
 }
