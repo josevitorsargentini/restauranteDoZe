@@ -1,5 +1,6 @@
 package com.restaurante.model;
 
+
 public class Prato {
 	
 	private int id;	
@@ -23,4 +24,19 @@ public class Prato {
 		return preco;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}	
 }
