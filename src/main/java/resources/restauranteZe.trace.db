@@ -1,0 +1,30 @@
+2024-08-20 21:08:54.803740-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PESSOAS" already exists; SQL statement:
+-- schema.sql
+
+-- Cria uma tabela chamada 'pessoas'
+CREATE TABLE pessoas (
+    [42101-232]
+2024-08-20 21:13:01.581188-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PESSOAS" already exists; SQL statement:
+-- schema.sql
+
+-- Cria uma tabela chamada 'pessoas'
+CREATE TABLE pessoas (
+    [42101-232]
+2024-08-20 21:13:24.986825-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PESSOAS" already exists; SQL statement:
+-- schema.sql
+
+-- Cria uma tabela chamada 'pessoas'
+CREATE TABLE pessoas (
+    [42101-232]
+2024-08-20 21:17:33.243498-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CARDAPIO" already exists; SQL statement:
+-- schema.sql
+
+CREATE TABLE Cardapio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    preco DECIMAL(1 [42101-232]
