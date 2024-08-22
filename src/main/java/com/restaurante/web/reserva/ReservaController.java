@@ -28,6 +28,7 @@ public class ReservaController extends HttpServlet {
 		commandMap.put("/reserva/reservaInfo", new ReservaInfo());
 		commandMap.put("/reserva/confirmada", new ReservaConfirmed());
 		commandMap.put("/reserva/negada", new ReservaNegada());
+		commandMap.put("/reserva/check", new  CheckDisponibilidadeCommand());
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

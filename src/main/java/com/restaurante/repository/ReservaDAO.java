@@ -52,7 +52,7 @@ public class ReservaDAO {
 	    return reserva;
 	}
 	
-	public boolean reservaLimite(LocalDate data) throws SQLException {
+	public boolean isDateAvailable(LocalDate data) throws SQLException {
 	    String sql = "SELECT COUNT(*) FROM reserva WHERE data_reserva = ?";
 	    try (Connection connection = DatabaseConnector.getConnection();
 	         PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -60,13 +60,13 @@ public class ReservaDAO {
 	        ResultSet rs = stmt.executeQuery();
 	        if (rs.next()) {
 	            int count = rs.getInt(1);
-	            return count >= 3; 
+	            return count <= 2 ; 
 	        }
 	    }
 	    return false;
 	}
 	
-	public boolean reservaCpfLimite(LocalDate data, String cpf) throws SQLException {
+	public boolean isCpfAvailable(LocalDate data, String cpf) throws SQLException {
 	    String sql = "SELECT COUNT(*) FROM reserva WHERE data_reserva = ? AND cpf = ?";
 	    try (Connection connection = DatabaseConnector.getConnection();
 	         PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -75,7 +75,7 @@ public class ReservaDAO {
 	        ResultSet rs = stmt.executeQuery();
 	        if (rs.next()) {
 	            int count = rs.getInt(1);
-	            return count > 0; // Retorna true se já houver uma reserva com o CPF para a data especificada
+	            return count < 0; // Retorna true se NÂO houver uma reserva com o CPF para a data especificada
 	        }
 	    }
 	    return false; // Retorna false se não houver reservas para a data e CPF especificados
