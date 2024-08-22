@@ -10,23 +10,28 @@ import com.restaurante.model.Reserva;
 import com.restaurante.repository.ReservaDAO;
 import com.restaurante.web.template.Template;
 
+public class CreateReserva implements Command {
 
-public class CreateReserva implements Command{
-	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Reserva reserva = new Reserva();
-		
-		 reserva.setNome(request.getParameter("nome"));
-		 reserva.setCpf(request.getParameter("cpf"));
-		 reserva.setEmail(request.getParameter("email"));
-		 reserva.setData(LocalDate.parse(request.getParameter("data_reserva"))); // Supondo que data_reserva é LocalDate
 
-		    // Salva a reserva usando o DAO
-		 ReservaDAO dao = new ReservaDAO();
-		 dao.save(reserva);
-		
-		 //response.sendRedirect("home");
+		reserva.setNome(request.getParameter("nome"));
+		reserva.setCpf(request.getParameter("cpf"));
+		reserva.setEmail(request.getParameter("email"));
+		reserva.setData(LocalDate.parse(request.getParameter("data_reserva"))); // Supondo que data_reserva é LocalDate
 
-	} 
+		// Salva a reserva usando o DAO
+		ReservaDAO dao = new ReservaDAO();
+
+		if (dao.reservaLimite(LocalDate.parse(request.getParameter("data_reserva"))) || dao.reservaCpfLimite(LocalDate.parse(request.getParameter("data_reserva")),request.getParameter("cpf"))) {
+		
+			response.sendRedirect(request.getContextPath() + "/reserva/negada");
+		} else {
+			dao.save(reserva);
+
+			response.sendRedirect(request.getContextPath() + "/reserva/confirmada");
+
+		}
+	}
 }

@@ -44,6 +44,9 @@ private void request(HttpServletRequest request, HttpServletResponse response) t
 	private Command getCommand(HttpServletRequest request) {
 		String operation = ControllerHelper.extractOperation(request);
 		System.out.println(operation);
+		if (operation.matches(".*\\.(css|js|png|jpg|jpeg|gif|svg)$")) {
+	        return null;
+	    }
 		
 		Command cmd = null;
 		switch (operation) {
@@ -53,6 +56,13 @@ private void request(HttpServletRequest request, HttpServletResponse response) t
 			
 			case "/reserva/reservaInfo":
 				cmd = new ReservaInfo();
+				break;
+				
+			case "/reserva/confirmada":
+				cmd = new ReservaConfirmed();
+				break;
+			case "/reserva/negada":
+				cmd = new ReservaNegada();
 				break;
 			
 			default:

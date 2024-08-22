@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import com.restaurante.model.Reserva;
 
@@ -49,5 +50,34 @@ public class ReservaDAO {
 	    }
 
 	    return reserva;
+	}
+	
+	public boolean reservaLimite(LocalDate data) throws SQLException {
+	    String sql = "SELECT COUNT(*) FROM reserva WHERE data_reserva = ?";
+	    try (Connection connection = DatabaseConnector.getConnection();
+	         PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setDate(1, Date.valueOf(data));
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            int count = rs.getInt(1);
+	            return count >= 3; 
+	        }
+	    }
+	    return false;
+	}
+	
+	public boolean reservaCpfLimite(LocalDate data, String cpf) throws SQLException {
+	    String sql = "SELECT COUNT(*) FROM reserva WHERE data_reserva = ? AND cpf = ?";
+	    try (Connection connection = DatabaseConnector.getConnection();
+	         PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setDate(1, Date.valueOf(data));
+	        stmt.setString(2, cpf);
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            int count = rs.getInt(1);
+	            return count > 0; // Retorna true se já houver uma reserva com o CPF para a data especificada
+	        }
+	    }
+	    return false; // Retorna false se não houver reservas para a data e CPF especificados
 	}
 }

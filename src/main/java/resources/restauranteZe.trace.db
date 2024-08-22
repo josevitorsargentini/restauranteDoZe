@@ -406,3 +406,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/T-Gamer
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 38 more
+2024-08-22 18:19:14.643583-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "RESERVAS" not found; SQL statement:
+SELECT COUNT(*) FROM reservas WHERE data_reserva = ? [42102-232]
