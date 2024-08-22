@@ -1,6 +1,6 @@
 -- schema.sql
 
-CREATE TABLE Cardapio (
+CREATE TABLE Prato (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     descricao TEXT NOT NULL,

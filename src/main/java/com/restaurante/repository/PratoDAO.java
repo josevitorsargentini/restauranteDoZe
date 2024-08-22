@@ -17,7 +17,7 @@ public class PratoDAO {
 	
 		try (Connection conn = DatabaseConnector.getConnection();
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT id, nome, descricao, preco FROM cardapio;")) {
+				ResultSet rs = stmt.executeQuery("SELECT id, nome, descricao, preco FROM prato;")) {
 	
 			while (rs.next()) {
 				Prato prato = mapRow(rs);
@@ -31,26 +31,6 @@ public class PratoDAO {
 		return pratos;
 	}
 
-	public Prato findById(int id) throws SQLException {
-		Prato prato = null;
-	
-		try (Connection conn = DatabaseConnector.getConnection();
-				PreparedStatement ps = conn.prepareStatement("SELECT id, nome, descricao, preco FROM cardapio WHERE id = ?;")) {
-	
-			ps.setInt(1, id);
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					prato = mapRow(rs);
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return prato;
-	}
-
 	private Prato mapRow(ResultSet rs) throws SQLException {
 		
 		Prato prato = new Prato();
@@ -61,5 +41,5 @@ public class PratoDAO {
 		
 		return prato;	
 	}
-
+	
 }

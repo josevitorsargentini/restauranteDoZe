@@ -1,7 +1,7 @@
 -- data.sql
 
 
-INSERT INTO Cardapio (nome, descricao, preco) VALUES
+INSERT INTO Prato (nome, descricao, preco) VALUES
 ('Espaguete à Bolonhesa', 'Espaguete com molho de carne e tomate.', 29.90),
 ('Pizza Margherita', 'Pizza com molho de tomate, mozzarella e manjericão.', 35.00);
 
