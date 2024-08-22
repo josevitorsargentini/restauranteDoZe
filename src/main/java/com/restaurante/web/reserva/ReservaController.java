@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.restaurante.Command;
 import com.restaurante.web.ControllerHelper;
+import com.restaurante.web.HomeServlet;
 
 @WebServlet("/reserva/*")
 public class ReservaController extends HttpServlet {
@@ -50,10 +51,13 @@ private void request(HttpServletRequest request, HttpServletResponse response) t
 				cmd = new CreateReserva();
 				break;
 			
-			case "/reserva/info":
+			case "/reserva/reservaInfo":
 				cmd = new ReservaInfo();
 				break;
 			
+			default:
+	            System.err.println("Operação desconhecida: " + operation);
+	            break;
 		
 		}
 		

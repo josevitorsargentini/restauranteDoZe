@@ -26,7 +26,7 @@ public class CreateReserva implements Command{
 		 ReservaDAO dao = new ReservaDAO();
 		 dao.save(reserva);
 		
-		 response.sendRedirect("home");
+		 //response.sendRedirect("home");
 
 	} 
 }
