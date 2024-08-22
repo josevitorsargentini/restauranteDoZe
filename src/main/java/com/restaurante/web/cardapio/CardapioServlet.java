@@ -25,7 +25,7 @@ public class CardapioServlet extends HttpServlet {
 	        List<Prato> pratos;
 			pratos = dao.findAll();	
 	        request.setAttribute("pratos", pratos);
-	        Template.render("cardapio", request, response);
+	        Template.render("cardapio/cardapio", request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

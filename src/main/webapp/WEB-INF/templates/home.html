@@ -3,23 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Restaurante do Zé</title>
+	<link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
-	<h1>
-		Restaurante do Zé
-	</h1>
+	<header>
+		<img alt="logoDoZe" src="/restauranteDoZe/res/images/logoDoZe.png">
+		<h1>Restaurante do Zé</h1>
+	</header>
 
-	<p>
+	<h2>
 		Bem vindo ao Restaurante do Zé!
-	</p>
+	</h2>
 
 	<ul>
 		<li>
-			<a th:href="@{cardapio}">Visualizar cardápio</a>
+			<a th:href="@{cardapio}">Veja o cardápio</a>
 		</li>
 		<li>
-			<a th:href="@{reserva/info}">fazer reserva</a>
+			<a th:href="@{reserva/info}">Fazer reserva</a>
 		</li>
 	
 	</ul>

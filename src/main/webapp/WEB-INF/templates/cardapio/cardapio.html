@@ -8,7 +8,18 @@
 </head>
 <body>
     <header>
+    	<img alt="logoDoZe" src="/restauranteDoZe/res/images/logoDoZe.png">
         <h1>Restaurante do Zé - Cardápio</h1>
+        
+	    <ul>
+			<li>
+				<a th:href="@{home}">Voltar ao início</a>
+			</li>
+			<li>
+				<a th:href="@{reserva/info}">Fazer reserva</a>
+			</li>
+		</ul>
+		
     </header>
 
     <main>
@@ -16,11 +27,11 @@
             <div class="container">
                 <div class="card-columns">
                     <div th:each="prato : ${pratos}" class="card">
-                        <!-- <img th:src="@{${prato.imagem}}" alt="Imagem do prato" class="card-img-top"> -->
+                        <img th:src="@{'/res/images/' + ${prato.id} + '.jpg'}" alt="Imagem do prato">
                         <div class="card-body">
                             <h2 class="card-title" th:text="${prato.nome}">Nome do Prato</h2>
                             <p class="card-text" th:text="${prato.descricao}">Descrição do Prato</p>
-                            <p class="card-text" th:text="${prato.preco}">Preço do prato</p>
+                            <p class="card-text" th:text="'R$ ' + ${#numbers.formatDecimal(prato.preco, 2, 2)}">Preço do prato</p>
                         </div>
                     </div>
                 </div>
