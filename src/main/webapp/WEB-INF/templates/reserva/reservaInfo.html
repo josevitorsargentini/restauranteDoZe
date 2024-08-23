@@ -3,17 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>RESERVé</title>
-<link rel="stylesheet" th:href="@{/css/reserva.css}" media="all">
+	<link rel="stylesheet" th:href="@{/css/reserva.css}" media="all">
 </head>
 
 <body>
-	<h1>
-		RESERVé
-	</h1>
 
-	<p>
-		RESERVé
-	</p>
+	<img alt="logoDoZe" src="/restauranteDoZe/res/images/logoDoZe.png">
+	<h1>
+		RESERVA
+	</h1>
+	
 	<form action="/restauranteDoZe/reserva/agendar" method="POST">
         <label for="nome">Nome:</label><br>
         <input type="text" id="nome" name="nome" maxlength="255" required><br><br>
@@ -33,33 +32,15 @@
     </form>
 	<ul>
 		<li>
-			<a th:href="@{/cardapio/cardapio}">fazer reserva</a>
+			<a th:href="@{reservaCancel}">Cancelar reserva</a>
 		</li>
-	
+
+        <li>
+			<a th:href="@{/home}">Voltar ao início</a>
+		</li>
 	</ul>
 	
+	<script th:src="@{/js/script.js}"></script>
 	
-	
-	<script>
-        document.getElementById('data_reserva').addEventListener('change', function() {
-            const dataReserva = this.value;
-
-            fetch(`/restauranteDoZe/reserva/check?data_reserva=${dataReserva}`)
-                .then(response => response.json())
-                .then(data => {
-                    const disponibilidadeElement = document.getElementById('disponibilidade');
-                    if (data.disponivel) {
-                        disponibilidadeElement.textContent = 'Data disponível!';
-                        disponibilidadeElement.style.color = 'green';
-                    } else {
-                        disponibilidadeElement.textContent = 'Data indisponível!';
-                        disponibilidadeElement.style.color = 'red';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao verificar disponibilidade:', error);
-                });
-        });
-    </script>
 </body>
 </html>

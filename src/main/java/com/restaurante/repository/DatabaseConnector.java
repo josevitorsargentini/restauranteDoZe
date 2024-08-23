@@ -6,7 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnector {
-	private static final String DB_URL = "jdbc:h2:file:C:/Users/duddv/eclipse-workspace/restauranteDoZe/src/main/java/resources/restauranteZe";
+	private static final String DB_URL = "jdbc:h2:file:" 
+	        + System.getProperty("user.dir").replace("\\", "/") 
+	        + "/restauranteDoZe/src/main/java/resources/restauranteZe";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
     
