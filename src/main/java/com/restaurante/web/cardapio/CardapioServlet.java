@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.restaurante.model.Prato;
 import com.restaurante.repository.PratoDAO;
@@ -20,14 +21,21 @@ public class CardapioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {		
-			PratoDAO dao = new PratoDAO();
-	        List<Prato> pratos;
-			pratos = dao.findAll();	
-	        request.setAttribute("pratos", pratos);
-	        Template.render("cardapio/cardapio", request, response);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		HttpSession session = request.getSession();
+		List<Prato> pratos = (List<Prato>) session.getAttribute("pratos");
+
+		if (pratos == null) {
+			try {
+				PratoDAO dao = new PratoDAO();
+				pratos = dao.findAll();
+				session.setAttribute("pratos", pratos);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+
+		request.setAttribute("pratos", pratos);
+		Template.render("cardapio/cardapio", request, response);
 	}
+	
 }
