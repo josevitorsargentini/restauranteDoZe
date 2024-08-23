@@ -25,7 +25,8 @@ public class ReservaController extends HttpServlet {
 	public void init() throws ServletException {
 
 		commandMap.put("/reserva/agendar", new CreateReserva());
-		commandMap.put("/reserva/reservaCancel", new CancelReserva());
+		commandMap.put("/reserva/cancelar", new CancelReserva());
+		commandMap.put("/reserva/reservaCancel", new ReservaCancel());
 		commandMap.put("/reserva/reservaInfo", new ReservaInfo());
 		commandMap.put("/reserva/confirmada", new ReservaConfirmed());
 		commandMap.put("/reserva/negada", new ReservaNegada());

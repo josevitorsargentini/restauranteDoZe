@@ -25,7 +25,8 @@ public class CreateReserva implements Command {
 		ReservaDAO dao = new ReservaDAO();
 
 		if (!dao.isDateAvailable(LocalDate.parse(request.getParameter("data_reserva"))) || !dao.isCpfAvailable(LocalDate.parse(request.getParameter("data_reserva")),request.getParameter("cpf")) || dao.isDataLimit(LocalDate.parse(request.getParameter("data_reserva")))) {
-		
+			dao.save(reserva);
+			
 			response.sendRedirect(request.getContextPath() + "/reserva/negada");
 		} else {
 
