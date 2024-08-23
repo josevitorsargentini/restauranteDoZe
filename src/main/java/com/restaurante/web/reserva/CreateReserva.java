@@ -28,10 +28,8 @@ public class CreateReserva implements Command {
 		
 			response.sendRedirect(request.getContextPath() + "/reserva/negada");
 		} else {
-			dao.save(reserva);
 
 			response.sendRedirect(request.getContextPath() + "/reserva/confirmada");
-
 		}
 	}
 }

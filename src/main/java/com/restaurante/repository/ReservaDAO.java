@@ -52,6 +52,38 @@ public class ReservaDAO {
 	    return reserva;
 	}
 	
+	
+	public boolean cancelReserva(String cpf, LocalDate dataReserva) throws SQLException {
+	    if (cpf == null || cpf.isBlank()) {
+	        throw new IllegalArgumentException("Digite seu CPF.");
+	    }
+
+	    try (Connection conn = DatabaseConnector.getConnection()) {
+	        try {
+	            conn.setAutoCommit(false);
+
+	            String sql = "DELETE FROM Reserva WHERE cpf = ? AND data_reserva = ?";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, cpf);
+	            ps.setDate(2, Date.valueOf(dataReserva));
+
+	            int rowsAffected = ps.executeUpdate();
+
+	            if (rowsAffected == 0) {
+	                throw new SQLException("Nenhuma reserva encontrada para cancelamento.");
+	            }
+
+	            conn.commit();
+	            return true;
+	        } catch (SQLException e) {
+	            conn.rollback();
+	            throw e;
+	        }
+	    } catch (SQLException e) {
+	        throw new SQLException(e);
+	    }
+	}
+	
 	public boolean isDateAvailable(LocalDate data) throws SQLException {
 	    String sql = "SELECT COUNT(*) FROM reserva WHERE data_reserva = ?";
 	    try (Connection connection = DatabaseConnector.getConnection();
