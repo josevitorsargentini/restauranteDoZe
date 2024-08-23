@@ -1,16 +1,18 @@
 package com.restaurante.web.reserva;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.restaurante.Command;
 import com.restaurante.web.template.Template;
 
-public class ReservaCancelada implements Command {
+
+public class ReservaCancelFormsCommand implements Command{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		Template.render("reserva/reservaCancelada", request, response);
+		Template.render("reserva/reservaCancelarForms", request, response);
 	} 
 }

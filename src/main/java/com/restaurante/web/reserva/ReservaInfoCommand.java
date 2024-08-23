@@ -11,7 +11,7 @@ import com.restaurante.repository.ReservaDAO;
 import com.restaurante.web.template.Template;
 
 
-public class ReservaInfo implements Command{
+public class ReservaInfoCommand implements Command{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

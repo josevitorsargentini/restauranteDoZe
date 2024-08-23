@@ -10,7 +10,7 @@ import com.restaurante.model.Reserva;
 import com.restaurante.repository.ReservaDAO;
 
 
-public class CreateReserva implements Command {
+public class CreateReservaCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -25,8 +25,6 @@ public class CreateReserva implements Command {
 		ReservaDAO dao = new ReservaDAO();
 
 		if (!dao.isDateAvailable(LocalDate.parse(request.getParameter("data_reserva"))) || !dao.isCpfAvailable(LocalDate.parse(request.getParameter("data_reserva")),request.getParameter("cpf")) || dao.isDataLimit(LocalDate.parse(request.getParameter("data_reserva")))) {
-			
-			
 			response.sendRedirect(request.getContextPath() + "/reserva/negada");
 		} else {
 			dao.save(reserva);

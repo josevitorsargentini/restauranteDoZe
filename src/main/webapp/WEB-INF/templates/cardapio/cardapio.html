@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio</title>
-    <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" th:href="@{/css/styles.css}" media="all">
 </head>
 <body>
     <header>
@@ -13,10 +13,10 @@
         
 	    <ul>
 			<li>
-				<a th:href="@{home}">Voltar ao início</a>
+				<a th:href="@{/home}">Voltar ao início</a>
 			</li>
 			<li>
-				<a th:href="@{reserva/reservaInfo}">Fazer reserva</a>
+				<a th:href="@{/reserva/form}">Fazer reserva</a>
 			</li>
 		</ul>
 		

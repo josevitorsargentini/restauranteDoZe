@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.restaurante.Command;
 import com.restaurante.web.template.Template;
 
-public class ReservaNegada implements Command{
+public class ReservaCanceladaNegadaCommand implements Command{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		Template.render("reserva/reservaNegada", request, response);
+		Template.render("reserva/reservaNaoCancelada", request, response);
 	} 
 }

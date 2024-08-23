@@ -9,7 +9,7 @@ import com.restaurante.Command;
 import com.restaurante.repository.ReservaDAO;
 
 
-public class CancelReserva implements Command {
+public class ReservaCancelarCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,10 +21,9 @@ public class CancelReserva implements Command {
 		
 		if (dao.cancelReserva(cpf, dataReserva)) {
 		
-			response.sendRedirect(request.getContextPath() + "/reserva/reservaCancelada");
+			response.sendRedirect(request.getContextPath() + "/reserva/cancelar/confirmada");
 		} else {
-
-			response.sendRedirect(request.getContextPath() + "/reserva/confirmada");
+			response.sendRedirect(request.getContextPath() + "/reserva/cancelar/negada");
 		}
 	}
 }
