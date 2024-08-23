@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class CheckDisponibilidadeCommand implements Command {
 
-    private ReservaDAO reservaDAO = new ReservaDAO(); // Instanciar o DAO
+    private ReservaDAO reservaDAO = new ReservaDAO(); 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -20,10 +20,10 @@ public class CheckDisponibilidadeCommand implements Command {
 
         boolean disponivel = false;
 		try {
-			disponivel = reservaDAO.isDateAvailable(dataReservaParse);
+			disponivel = reservaDAO.isDateAvailable(dataReservaParse) && !reservaDAO.isDataLimit(dataReservaParse);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} // Usar o DAO para verificar disponibilidade
+		} 
 
         response.setContentType("application/json");
         response.getWriter().print("{\"disponivel\": " + disponivel + "}");

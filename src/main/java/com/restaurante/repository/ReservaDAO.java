@@ -60,7 +60,7 @@ public class ReservaDAO {
 	        ResultSet rs = stmt.executeQuery();
 	        if (rs.next()) {
 	            int count = rs.getInt(1);
-	            return count <= 2 ; 
+	            return count < 2 ; 
 	        }
 	    }
 	    return false;
@@ -75,9 +75,13 @@ public class ReservaDAO {
 	        ResultSet rs = stmt.executeQuery();
 	        if (rs.next()) {
 	            int count = rs.getInt(1);
-	            return count < 0; // Retorna true se NÂO houver uma reserva com o CPF para a data especificada
+	            return count == 0; 
 	        }
 	    }
-	    return false; // Retorna false se não houver reservas para a data e CPF especificados
+	    return false; 
+	}
+	
+	public boolean isDataLimit(LocalDate data) throws SQLException {
+		return data.isBefore(LocalDate.now().plusDays(1));
 	}
 }

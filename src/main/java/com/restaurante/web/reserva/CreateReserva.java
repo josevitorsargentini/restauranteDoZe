@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.restaurante.Command;
 import com.restaurante.model.Reserva;
 import com.restaurante.repository.ReservaDAO;
-import com.restaurante.web.template.Template;
+
 
 public class CreateReserva implements Command {
 
@@ -19,12 +19,12 @@ public class CreateReserva implements Command {
 		reserva.setNome(request.getParameter("nome"));
 		reserva.setCpf(request.getParameter("cpf"));
 		reserva.setEmail(request.getParameter("email"));
-		reserva.setData(LocalDate.parse(request.getParameter("data_reserva"))); // Supondo que data_reserva é LocalDate
+		reserva.setData(LocalDate.parse(request.getParameter("data_reserva"))); 
 
-		// Salva a reserva usando o DAO
+	
 		ReservaDAO dao = new ReservaDAO();
 
-		if (dao.isDateAvailable(LocalDate.parse(request.getParameter("data_reserva"))) || dao.isCpfAvailable(LocalDate.parse(request.getParameter("data_reserva")),request.getParameter("cpf"))) {
+		if (!dao.isDateAvailable(LocalDate.parse(request.getParameter("data_reserva"))) || !dao.isCpfAvailable(LocalDate.parse(request.getParameter("data_reserva")),request.getParameter("cpf")) || dao.isDataLimit(LocalDate.parse(request.getParameter("data_reserva")))) {
 		
 			response.sendRedirect(request.getContextPath() + "/reserva/negada");
 		} else {
